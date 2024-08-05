@@ -1,0 +1,14 @@
+{% extends 'ransomwares/index.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1>Connexion</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <button type="submit" class="btn btn-dark">Se connecter</button> 
+    | <a class="btn btn-dark" href="{% url 'ransomwares:register' %}">S'inscrire</a>
+    </form>
+</div>
+{% endblock %}

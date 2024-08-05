@@ -1,0 +1,60 @@
+{% extends 'ransomwares/index.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Filter Emails{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    {% comment %} <form method="post">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <button type="submit" class="btn btn-primary">Récupérer les Emails</button>
+    </form> {% endcomment %}
+    {% if email_data %}
+    <h1>Filtrage des Emails</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Expéditeur</th>
+                    <th>Objet</th>
+                    <th>Contenu</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for email in email_data %}
+                <tr>
+                    <td>{{ email.id }}</td>
+                    <td>{{ email.sender }}</td>
+                    <td>{{ email.subject }}</td>
+                    <td>{{ email.content }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="{% url "ransomwares:home" %}" class="btn btn-dark">Retour à l'acceuil</a>
+
+    {% endif %}
+</div>
+
+{% comment %} <h2>Filtered Emails</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Sender</th>
+            <th>Subject</th>
+            <th>Content</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for email in emails %}
+        <tr>
+            <td>{{ email.sender }}</td>
+            <td>{{ email.subject }}</td>
+            <td>{{ email.content }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table> {% endcomment %}
+{% endblock content %}

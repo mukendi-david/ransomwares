@@ -1,0 +1,39 @@
+{% extends 'ransomwares/index.html' %}
+
+{% load crispy_forms_tags %}
+{% block title %}Capture Traffic{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    {% if traffic_data %}
+        <h1>Paquets Capturés</h1>
+            <table class="table">
+                <thead class="table-dark">
+                    <tr>
+                        <th>#</th>
+                        <th>Source IP</th>
+                        <th>Destination IP</th>
+                        <th>Protocole</th>
+                        <th>Longueur</th>
+                        <th>Info</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for pkt in traffic_data %}
+                    <tr>
+                        <td>{{ pkt.id }}</td>
+                        <td>{{ pkt.source_ip }}</td>
+                        <td>{{ pkt.destination_ip }}</td>
+                        <td>{{ pkt.protocol }}</td>
+                        <td>{{ pkt.length }}</td>
+                        <td>{{ pkt.info }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <a href="{% url "ransomwares:home" %}" class="btn btn-dark">Retour à l'acceuil</a>
+        </div>
+    {% endif %}
+</div>
+{% endblock content %}

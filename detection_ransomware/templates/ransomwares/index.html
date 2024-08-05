@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>{% block title %}Ransomware Detection{% endblock %}</title>
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+        }
+        .content {
+            display: flex;
+            flex: 1;
+            justify-content: space-between;
+            align-items: center;
+        } 
+        .left-image {
+            width: 50%;
+            height: 100%;
+            background-image: url("{% static 'images/ransomware.jpg' %}");
+            background-size: cover;
+            background-position: center;
+        }
+        .right-content {
+            width: 50%;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+        }
+        .presentation-content {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    {% block content %}
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">Ransomware Detection</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarText">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    {% if user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'ransomwares:Capture_Traffic' %}">Capture Traffic</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'ransomwares:Filter_Emails' %}">Filter Emails</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'ransomwares:backup_data' %}">Backup Data</a>
+                        </li>
+                    {% endif %}
+                </ul>
+                {% if user.is_authenticated %}
+                    <span class="navbar-text">
+                        Connecté en tant que {{ user.username }} | <a href="{% url 'ransomwares:logout' %}">Se déconnecter</a>
+                    </span>
+                {% else %}
+                    <span class="navbar-text">
+                        <a href="{% url 'ransomwares:login' %}">Se connecter</a>
+                        <a href="{% url 'ransomwares:register' %}">S'inscrire</a>
+                    </span>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+    <div class="content">
+        <div class="left-image"></div>
+        <div class="right-content">
+            <div class="presentation-content">
+                <h1>Application de Détection et de Prévention des Ransomwares</h1>
+                <p>
+                    Bienvenue dans notre application de détection et de prévention des ransomwares. 
+                    Cette plateforme utilise des techniques avancées pour analyser le trafic réseau, 
+                    filtrer les emails potentiellement dangereux et sauvegarder les données importantes. 
+                    Notre objectif est de fournir une solution complète pour protéger vos systèmes 
+                    contre les attaques de ransomware.
+                </p>
+            </div>
+        </div>
+    </div>
+    {% endblock content %}
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+</body>
+</html>

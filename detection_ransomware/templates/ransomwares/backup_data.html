@@ -1,0 +1,12 @@
+{% extends 'ransomwares/index.html' %}
+
+{% block title %}Backup Data{% endblock %}
+
+{% block content %}
+
+<div class="container mt-5">
+    <h1>Sauvegarde des Données</h1>
+    <p>Les données ont été sauvegardées dans le fichier : {{ backup_file }}</p>
+    <a href="{% url "ransomwares:home" %}" class="btn btn-dark">Retour à l'acceuil</a>
+</div>
+{% endblock content %}

@@ -1,0 +1,39 @@
+.animation-container {
+    color: black;
+    padding: 20px;
+  }
+  
+  button {
+    font-size: 18px;
+  }
+  
+  .navbar {
+    padding: 10px;
+  }
+  
+  .navbar-brand {
+    font-weight: bold;
+  }
+
+  .container-fluid{
+    width: 100%;
+    height: 100%;
+  }
+  
+  body {
+    height: 100vh;
+    background-image: url(../../../ransomware.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  .container {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  button {
+    font-size: 24px;
+  }
